@@ -3,7 +3,7 @@ version: 0.2
 
 env:
   variables:
-    IMAGE_NAME: "petclinic-rest"
+    IMAGE_NAME: "happy-mypet"
 
 phases:
   pre_build:
