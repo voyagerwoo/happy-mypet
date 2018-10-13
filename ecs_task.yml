@@ -1,0 +1,14 @@
+version: '2'
+services:
+  petclinic-rest:
+    image: ${DOCKER_REGISTRY_HOST}/petclinic-rest:latest
+    mem_limit: 1500m
+    mem_reservation: 512m
+    ports:
+      - "0:9460"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: petclinic-rest
+        awslogs-region: ap-northeast-2
+        awslogs-stream-prefix: petclinic

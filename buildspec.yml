@@ -1,0 +1,37 @@
+version: 0.2
+# build image : aws/codebuild/java:openjdk-8
+
+env:
+  variables:
+    IMAGE_NAME: "petclinic-rest"
+
+phases:
+  pre_build:
+    commands:
+      - echo "Installing jq..."
+      - curl -qL -o jq https://stedolan.github.io/jq/download/linux64/jq && chmod +x ./jq
+      - echo "Logging in to Amazon ECR..."
+      - DOCKER_LOGIN=`aws ecr get-login --no-include-email`
+      - ${DOCKER_LOGIN}
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Building the Docker image..."
+      - mvn clean package
+      - docker build -f src/main/docker/Dockerfile -t petclinic-rest .
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+      - echo "Pushing the Docker image..."
+      - REPOSITORY_URI=`aws ecr describe-repositories --repository-name ${IMAGE_NAME} | ./jq -r ".repositories[0].repositoryUri"`
+      - docker tag petclinic-rest:latest ${REPOSITORY_URI}:latest
+      - docker push ${REPOSITORY_URI}:latest
+      # !ECS artifact json spec : {"name": "ECS_CONTAINER_NAME", "imageUri": "REPOSITORY_URI:TAG"}
+      - printf '[{"name":"petclinic-rest-app","imageUri":"%s"}]' ${REPOSITORY_URI}:latest > imagedefinitions.json
+
+artifacts:
+    files: imagedefinitions.json
+
+cache:
+  paths:
+    - '/root/.m2/**/*'
