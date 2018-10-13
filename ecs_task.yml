@@ -1,7 +1,7 @@
 version: '2'
 services:
-  petclinic-rest:
-    image: ${DOCKER_REGISTRY_HOST}/petclinic-rest:latest
+  happy-mypet:
+    image: ${DOCKER_REGISTRY_HOST}/happy-mypet:latest
     mem_limit: 1500m
     mem_reservation: 512m
     ports:
@@ -9,6 +9,6 @@ services:
     logging:
       driver: awslogs
       options:
-        awslogs-group: petclinic-rest
+        awslogs-group: happy-mypet
         awslogs-region: ap-northeast-2
         awslogs-stream-prefix: petclinic

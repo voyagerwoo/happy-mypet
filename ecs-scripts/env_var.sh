@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-export IMAGE_NAME="petclinic-rest"
-export CLUSTER_NAME="petclinic-rest"
+export IMAGE_NAME="happy-mypet"
+export CLUSTER_NAME="happy-mypet"
 export REGION=`aws configure get region`
 
-export ECS_SG_NAME=petclinic-rest-ecs-sg
-export ALB_SG_NAME=petclinic-rest-alb-sg
-export ALB_NAME=petclinic-rest-alb
-export TARGET_NAME=petclinic-rest-targets
+export ECS_SG_NAME=happy-mypet-ecs-sg
+export ALB_SG_NAME=happy-mypet-alb-sg
+export ALB_NAME=happy-mypet-alb
+export TARGET_NAME=happy-mypet-targets
 
 ACCOUNT_ID=`aws sts get-caller-identity | jq -r ".Account"`
 export DOCKER_REGISTRY_HOST="${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com"

@@ -1,14 +1,14 @@
 {
-  "Cluster": "petclinic-rest-cluster",
+  "Cluster": "happy-mypet-cluster",
   "ContainerInstanceARN": "arn:aws:ecs:ap-southeast-1:957582603404:container-instance/28a45244-b5d4-4cec-80de-864342ba925f",
   "TaskARN": "arn:aws:ecs:ap-southeast-1:957582603404:task/ef1f999d-e47e-4eed-8d7c-8241f9d185b7",
-  "TaskDefinitionFamily": "petclinic-rest-task",
+  "TaskDefinitionFamily": "happy-mypet-task",
   "TaskDefinitionRevision": "9",
   "ContainerID": "89186a80fff10fb0b4e618ef7e5a740f599263c2b21b2c101a5fa824bfa1d51b",
-  "ContainerName": "petclinic-rest-app",
-  "DockerContainerName": "/ecs-petclinic-rest-task-9-petclinic-rest-app-c4ede2cfe1eedae24200",
+  "ContainerName": "happy-mypet-app",
+  "DockerContainerName": "/ecs-happy-mypet-task-9-happy-mypet-app-c4ede2cfe1eedae24200",
   "ImageID": "sha256:91985fe203e713422fe9dc1a179da18073b86dece27717874114c151e66ef36e",
-  "ImageName": "957582603404.dkr.ecr.ap-southeast-1.amazonaws.com/petclinic-rest:latest",
+  "ImageName": "957582603404.dkr.ecr.ap-southeast-1.amazonaws.com/happy-mypet:latest",
   "PortMappings": [
     {
       "ContainerPort": 9460,
