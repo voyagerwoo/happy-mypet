@@ -15,7 +15,7 @@ management:
   metrics:
     export:
       cloudwatch:
-        namespace: happy-mypet
+        namespace: happy-mypet-local
         batchSize: 20
 
 cloud:
