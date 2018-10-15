@@ -26,5 +26,6 @@ cloud:
 logging:
   level:
     ROOT: info
+    io.micrometer: debug
 
 
