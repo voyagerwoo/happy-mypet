@@ -1,14 +1,18 @@
-package vw.app.happymypet.infras.ecs;
+package vw.app.happymypet.infras.metrics.ecsonec2;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.data.util.Pair;
+import vw.app.happymypet.infras.metrics.MetricsMetadata;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @ToString
-public class AmazonEcsMetadata {
+public class EcsOnEc2Metadata implements MetricsMetadata {
     boolean isExist=true;
     String cluster;
     String containerInstanceARN;
@@ -25,7 +29,7 @@ public class AmazonEcsMetadata {
     String metadataFileStatus;
 
 
-    public AmazonEcsMetadata(Boolean isExist) {
+    public EcsOnEc2Metadata(Boolean isExist) {
         this.isExist = isExist;
     }
 
@@ -39,6 +43,18 @@ public class AmazonEcsMetadata {
             return splited[1];
         else
             return containerInstanceARN;
+    }
+
+    @Override
+    public List<Pair<String, String>> dimensions() {
+        if(!isExist)
+            return Collections.emptyList();
+        return new ArrayList<Pair<String, String>>(){{
+            add(Pair.of("CLUSTER_NAME", cluster));
+            add(Pair.of("CONTAINER_INSTANCE_ID", getContainerInstanceId()));
+            add(Pair.of("TASK_DEFINITION_FAMILY", taskDefinitionFamily));
+            add(Pair.of("CONTAINER_ID", containerID));
+        }};
     }
 
     @Getter

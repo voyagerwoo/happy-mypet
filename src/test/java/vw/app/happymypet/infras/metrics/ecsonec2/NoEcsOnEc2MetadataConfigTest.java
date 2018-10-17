@@ -1,4 +1,4 @@
-package vw.app.happymypet.infras.ecs;
+package vw.app.happymypet.infras.metrics.ecsonec2;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.BeforeClass;
@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit4.SpringRunner;
+import vw.app.happymypet.infras.metrics.ecsonec2.EcsOnEc2Metadata;
 
 import java.io.IOException;
 
@@ -18,10 +18,10 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Slf4j
-public class NoAmazonEcsMetadataConfigTest {
+public class NoEcsOnEc2MetadataConfigTest {
 
     @Autowired
-    AmazonEcsMetadata amazonEcsMetadata;
+    EcsOnEc2Metadata ecsOnEc2Metadata;
 
     @BeforeClass
     public static void setup() throws IOException {
@@ -31,7 +31,7 @@ public class NoAmazonEcsMetadataConfigTest {
     @Test
     @Ignore
     public void isNotAmazonEcsMetadataExist() {
-        log.info(amazonEcsMetadata.toString());
-        assertThat(amazonEcsMetadata.isExist(), is(false));
+        log.info(ecsOnEc2Metadata.toString());
+        assertThat(ecsOnEc2Metadata.isExist(), is(false));
     }
 }

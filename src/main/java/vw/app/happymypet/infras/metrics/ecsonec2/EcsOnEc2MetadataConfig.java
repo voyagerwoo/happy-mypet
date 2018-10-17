@@ -1,4 +1,4 @@
-package vw.app.happymypet.infras.ecs;
+package vw.app.happymypet.infras.metrics.ecsonec2;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @Slf4j
-public class AmazonEcsMetadataConfig {
+public class EcsOnEc2MetadataConfig {
     @Value("${ECS_CONTAINER_METADATA_FILE:}")
     private String ecsContainerMetadataFilePath;
 
@@ -30,20 +30,20 @@ public class AmazonEcsMetadataConfig {
     }
 
     @Bean
-    public AmazonEcsMetadata amazonEcsMetadata() {
+    public EcsOnEc2Metadata amazonEcsMetadata() {
         if(StringUtils.isEmpty(ecsContainerMetadataFilePath)) {
             log.warn("There is no $ECS_CONTAINER_METADATA_FILE.");
-            return new AmazonEcsMetadata(false);
+            return new EcsOnEc2Metadata(false);
         }
         try {
             String metaFileContent = Files.readAllLines(Paths.get(ecsContainerMetadataFilePath)).stream()
                     .collect(Collectors.joining("\n"));
             log.info("### ECS_CONTAINER_METADATA_FILE Contents");
             log.info(metaFileContent);
-            return mapper.readValue(metaFileContent, AmazonEcsMetadata.class);
+            return mapper.readValue(metaFileContent, EcsOnEc2Metadata.class);
         } catch (IOException e){
             log.warn("There is no ECS container meta file.", e);
-            return new AmazonEcsMetadata(false);
+            return new EcsOnEc2Metadata(false);
         }
     }
 }
