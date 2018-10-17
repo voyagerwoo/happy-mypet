@@ -7,24 +7,7 @@ spring:
 server:
   port: 9460
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: ["health", "info"]
-  metrics:
-    export:
-      cloudwatch:
-        namespace: happy-mypet
-        batchSize: 20
-
 cloud:
   aws:
     region:
       static: ap-northeast-1
-
-logging:
-  level:
-    ROOT: info
-
-

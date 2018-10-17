@@ -5,4 +5,4 @@ RUN apk add --update \
 RUN mkdir /root/app
 COPY target/happy-mypet-0.0.1.jar /root/app/app.jar
 WORKDIR /root/app
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=prod","-jar","app.jar"]

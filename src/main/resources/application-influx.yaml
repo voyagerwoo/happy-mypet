@@ -9,7 +9,9 @@ management:
         namespace: happy-mypet-local1
         batchSize: 20
       influx:
-        enabled: false
+        uri: http://localhost:8086
+        db: services
+        step: 5s
 
 logging:
   level:

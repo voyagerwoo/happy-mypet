@@ -111,6 +111,12 @@
             <artifactId>micrometer-registry-cloudwatch</artifactId>
             <version>1.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-influx</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
